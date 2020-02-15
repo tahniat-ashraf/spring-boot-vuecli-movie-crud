@@ -7,7 +7,7 @@
       </v-list-item-content>
     </v-list-item>
     <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field v-model="movie.name" :counter="30" :rules="nameRules" label="Name" required></v-text-field>
+      <v-text-field v-model="movie.name" :counter="30" :rules="nameRules" label="Name" readonly></v-text-field>
 
       <v-select
         v-model="movie.genre"
