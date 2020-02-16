@@ -75,7 +75,8 @@ export default new Vuex.Store({
             state.onEditMovieIndex = index;
         },
         save(state, payload) {
-            state.movies[state.onEditMovieIndex] = payload.movie;
+            console.log(JSON.stringify(payload)+"----"+state.onEditMovieIndex+"-----"+JSON.stringify(state.movies[state.onEditMovieIndex]));
+            state.movies[state.onEditMovieIndex] = payload;
             state.onEditMovieIndex = -1;
             state.editVisibility = false;
         },
@@ -120,7 +121,11 @@ export default new Vuex.Store({
     },
     getters: {
         onEditMovie(state) {
-            return state.movies[state.onEditMovieIndex];
+            var movie = {...state.movies[state.onEditMovieIndex]}
+            return movie;
+        },
+        fetchAllMovies(state) {
+            return state.movies;
         }
     },
     modules: {}
