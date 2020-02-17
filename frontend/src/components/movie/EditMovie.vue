@@ -44,6 +44,7 @@ export default {
     save() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        console.log(this.movie.name+this.movie.genre);
         this.$store.dispatch("saveMovie", {
           name: this.movie.name,
           genre: this.movie.genre
