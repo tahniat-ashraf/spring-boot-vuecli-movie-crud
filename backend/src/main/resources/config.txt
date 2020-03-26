@@ -1,0 +1,2 @@
+export spring_profiles_active=mysql
+or JVM system parameter -Dspring.profiles.active=dev

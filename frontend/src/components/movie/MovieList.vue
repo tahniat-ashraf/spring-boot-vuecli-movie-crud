@@ -56,10 +56,10 @@
         },
         computed: {
             movies() {
-                return this.$store.getters.fetchAllMovies;
+                return this.$store.state.movies;
             }
         },
-        created() {
+        beforeCreate() {
             this.$store.dispatch('loadMovies');
         }
     };

@@ -17,7 +17,7 @@ export default {
         })
     },
 
-    addMovie(movie) {
+    saveMovie(movie) {
         return AXIOS.post(`/save`, {
             name: movie.name,
             genre: movie.genre
