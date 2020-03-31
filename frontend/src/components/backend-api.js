@@ -1,9 +1,9 @@
 import axios from "axios";
 
-console.log(process.env.NODE_ENV);
+const baseURL = process.env.VUE_APP_API_BASE_URL+`:8098/api`;
 
 const AXIOS = axios.create({
-  baseURL: `http://backend:8098/api`,
+  baseURL: baseURL,
   timeout: 5000
 });
 

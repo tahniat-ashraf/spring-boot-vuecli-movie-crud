@@ -11,6 +11,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 @Slf4j
+@CrossOrigin
 public class MovieController {
 
     private final MovieService movieService;
@@ -47,6 +48,7 @@ public class MovieController {
         movieService.delete(movie);
     }
 
+    @CrossOrigin
     @GetMapping("/findAll")
     public List<Movie> findAll() {
         return movieService.findAll();

@@ -2,6 +2,8 @@ version: "3"
 services:
   backend:
     build: backend/.
+    ports:
+      - "8098:8098"
   frontend:
     build: frontend/.
     ports:
