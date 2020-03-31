@@ -45,7 +45,7 @@ export default {
     return {};
   },
   methods: {
-    removeMovie(movie) {
+    removeMovie(movie, index) {
       this.$store.dispatch("removeMovie", movie);
     },
     editMovie(index) {
