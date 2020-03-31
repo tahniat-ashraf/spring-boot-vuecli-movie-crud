@@ -1,9 +1,41 @@
-FROM tomcat:9-jre8-alpine
+# Second phase
+FROM maven:3.6.3-jdk-11
+# Common Version from arg
+ARG VERSION=1.0
+# Creating app directory
+WORKDIR /usr/local/movies
+# Copying Application
+COPY . .
 
-MAINTAINER tahniat88e@gmail.com
+RUN pwd
 
-RUN rm -fr /usr/local/tomcat/webapps/ROOT
+RUN ls -larth
+# Getting .m2 libraries
+RUN mvn clean package
 
-COPY backend/target/spring-boot-vue-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+RUN pwd
 
-CMD ["catalina.sh", "run"]
+RUN ls -larth
+
+WORKDIR /usr/local/movies/backend/target
+
+RUN pwd
+
+RUN ls -larth
+
+#FROM movies:1.0 as build
+
+## Third Phase
+FROM openjdk:11.0.6-jdk
+# Creating app directory
+WORKDIR /usr/src/movies
+# Copying Jar
+COPY --from=0 "/usr/local/movies/backend/target/spring-boot-vue-0.0.1-SNAPSHOT.jar" movies.jar
+
+RUN pwd
+
+RUN ls -la
+# Exposing Port
+EXPOSE 8080
+# Running App
+ENTRYPOINT ["java","-jar","/usr/src/movies/movies.jar"]

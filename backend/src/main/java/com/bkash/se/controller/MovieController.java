@@ -4,6 +4,7 @@ package com.bkash.se.controller;
 import com.bkash.se.entity.Movie;
 import com.bkash.se.service.MovieService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,13 +25,12 @@ public class MovieController {
 
 
     @RequestMapping(path = "/hello")
-    public @ResponseBody
-    String sayHello() {
+    public String sayHello() {
         log.info("GET called on /hello resource");
         return HELLO_TEXT;
     }
 
-    @PostMapping("/findByName")
+    @PostMapping(value = "/findByName")
     public Movie findByName(@RequestBody Map<String, String> map) {
         return movieService.findByName(map.get("name"));
     }

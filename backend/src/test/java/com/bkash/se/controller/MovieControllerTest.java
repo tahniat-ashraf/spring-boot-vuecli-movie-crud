@@ -2,6 +2,8 @@ package com.bkash.se.controller;
 
 import com.bkash.se.SpringBootVuejsApplication;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.when;
-import static io.restassured.RestAssured.with;
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
@@ -50,12 +51,16 @@ public class MovieControllerTest {
         Map<String, String> map = new HashMap<>();
         map.put("name", "Titanic");
 
-        with().body(map)
-                .when()
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(map)
                 .post("/api/findByName")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
-                .assertThat();
+                .extract()
+                .response();
+
+        System.out.println("response.getBody().asString() = " + response.getBody().asString());
     }
 
 

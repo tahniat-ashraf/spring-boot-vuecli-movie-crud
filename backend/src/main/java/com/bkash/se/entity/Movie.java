@@ -18,7 +18,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Data
 @Builder
-@Table(name = "Movie")
 public class Movie {
 
     @Id
